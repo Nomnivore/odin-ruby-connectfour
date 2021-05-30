@@ -14,4 +14,8 @@ module ConnectFourGame
     SIZE_COLS = 7
     SIZE_ROWS = 6
   end
+
+  def valid_move?(col)
+    # stuff here
+  end
 end
