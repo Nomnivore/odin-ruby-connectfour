@@ -4,7 +4,6 @@ require_relative './board'
 require_relative './display'
 
 module ConnectFourGame
-
   # Class that controls the game flow of a Connect Four game.
   class ConnectFour
     include Display
@@ -15,5 +14,4 @@ module ConnectFourGame
 
     def play; end
   end
-
 end

@@ -16,7 +16,7 @@ module ConnectFourGame
       print figlet.blue
       horiz_line
     end
-    
+
     def horiz_line
       puts '============================================================='
         .blue.bold

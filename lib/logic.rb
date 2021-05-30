@@ -3,7 +3,6 @@
 require 'colorize'
 
 module ConnectFourGame
-  
   # Module for checking legal moves, checking if game has a winner, etc
   module Logic
     # constants for display, rules
@@ -14,6 +13,5 @@ module ConnectFourGame
 
     SIZE_COLS = 7
     SIZE_ROWS = 6
-
   end
 end
