@@ -24,9 +24,5 @@ module ConnectFourGame
       end
       puts "   #{[*1..SIZE_COLS].join('   ')}".green
     end
-
-    def sample
-      puts "#{DIVIDER}#{TOKEN_1}#{DIVIDER}#{TOKEN_2}#{DIVIDER}#{EMPTY}#{DIVIDER}"
-    end
   end
 end
