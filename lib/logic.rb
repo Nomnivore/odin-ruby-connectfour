@@ -15,7 +15,7 @@ module ConnectFourGame
     SIZE_ROWS = 6
 
     def valid_move?(col)
-      # stuff here
+      @state[col] && @state[col].size < SIZE_ROWS
     end
   end
 end
