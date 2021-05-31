@@ -21,19 +21,19 @@ describe ConnectFourGame::Board do
   end
 
   describe '#valid_move?' do
-    before do
+    let(:state) do
       full_col = []
       described_class::SIZE_ROWS.times do
         full_col << described_class::TOKEN_1
       end
-      state = [
+      [
         full_col,
         [],
         [described_class::TOKEN_1, described_class::TOKEN_1]
       ]
-      subject(:game_valid) { described_class.new(state) }
-      # TODO: fix everything above
     end
+    subject(:game_valid) { described_class.new(state) }
+
     context 'when the row is filled' do
       it 'is not a valid move' do
         expect(game_valid.valid_move?(0)).to be false
