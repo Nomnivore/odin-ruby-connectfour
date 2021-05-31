@@ -46,5 +46,15 @@ describe ConnectFourGame::Board do
       end
     end
   end
+
+  describe '#drop_piece' do
+    subject(:game_drop) { described_class.new }
+    context 'when the move is not valid' do
+      it 'does not add a piece to the column' do
+        allow(game_drop).to receive(:valid_move?).and_return false
+        expect { game_drop.drop_piece(0, :p1) }.not_to(change { game_drop.state[0].size })
+      end
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength

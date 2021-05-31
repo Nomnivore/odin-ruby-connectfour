@@ -24,5 +24,16 @@ module ConnectFourGame
       end
       puts "   #{[*1..SIZE_COLS].join('   ')}".green
     end
+
+    def drop_piece(col, token)
+      return unless valid_move?(col)
+
+      piece = case token
+              when :p1 then TOKEN_1
+              when :p2 then TOKEN_2
+              end
+
+      @state[col].append(piece)
+    end
   end
 end
