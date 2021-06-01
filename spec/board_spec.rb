@@ -55,6 +55,22 @@ describe ConnectFourGame::Board do
         expect { game_drop.drop_piece(0, :p1) }.not_to(change { game_drop.state[0].size })
       end
     end
+
+    context 'when the move is valid' do
+      let(:token_p1) { described_class::TOKEN_1 }
+      let(:token_p2) { described_class::TOKEN_2 }
+      it 'adds the player 1 token to the column' do
+        allow(game_drop).to receive(:valid_move?).and_return true
+        game_drop.drop_piece(6, :p1)
+        expect(game_drop.state[6]).to include(token_p1)
+      end
+
+      it 'adds the player 2 token to the column' do
+        allow(game_drop).to receive(:valid_move?).and_return true
+        game_drop.drop_piece(3, :p2)
+        expect(game_drop.state[3]).to include(token_p2)
+      end
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength
