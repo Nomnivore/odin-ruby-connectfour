@@ -37,7 +37,18 @@ module ConnectFourGame
 
     def check_rows; end
 
-    def check_cols; end
+    def check_cols
+      [*0...@state.size].each do |col|
+        [*0..SIZE_ROWS].each do |row|
+          3.times do |counter|
+            break unless !@state[col][row + counter].nil? && @state[col][row] == @state[col][row + counter + 1]
+
+            return true if counter == 3 # checks finished
+          end
+        end
+      end
+      false
+    end
 
     def check_diags; end
   end
