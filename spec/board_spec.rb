@@ -154,6 +154,13 @@ describe ConnectFourGame::Board do
       end
     end
 
+    context 'when tie game' do
+      it 'is game over' do
+        allow(game_over).to receive(:tie_game?).and_return(true)
+        expect(game_over).to be_game_over
+      end
+    end
+
     context 'when no win' do
       it 'is not game over' do
         expect(game_over).not_to be_game_over
