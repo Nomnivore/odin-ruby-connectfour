@@ -152,6 +152,30 @@ describe ConnectFourGame::Board do
         expect(game_over).to be_game_over
       end
     end
+
+    context 'when no win' do
+      it 'is not game over' do
+        expect(game_over).not_to be_game_over
+      end
+    end
+  end
+
+  describe '#tie_game?' do
+    state = Array.new(described_class::SIZE_COLS) { Array.new(described_class::SIZE_ROWS, 'x') }
+    subject(:game_tie) { described_class.new(state) }
+
+    context 'when all spots are filled' do
+      it 'is a tie game' do
+        expect(game_tie).to be_tie_game
+      end
+    end
+
+    context 'when all spots are not filled' do
+      subject(:game_not_tie) { described_class.new }
+      it 'is not a tie game' do
+        expect(game_not_tie).not_to be_tie_game
+      end
+    end
   end
 
   describe '#check_cols' do
