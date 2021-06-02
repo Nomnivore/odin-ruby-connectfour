@@ -35,13 +35,30 @@ module ConnectFourGame
       end
     end
 
-    def check_rows; end
+    # TODO: refactor in a way that pleases rubocop
+    def check_rows # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+      [*0..SIZE_ROWS].each do |row|
+        [*0...@state.size].each do |col|
+          3.times do |counter|
+            begin
+              break unless !@state[col + counter][row].nil? &&
+                           @state[col + counter][row] == @state[col + counter + 1][row]
+            rescue NoMethodError
+              break
+            end
+            return true if counter == 2
+          end
+        end
+      end
+      false
+    end
 
-    def check_cols
+    # TODO: refactor in a way that pleases rubocop
+    def check_cols # rubocop:disable Metrics/AbcSize
       [*0...@state.size].each do |col|
         [*0..SIZE_ROWS].each do |row|
           3.times do |counter|
-            break unless !@state[col][row + counter].nil? && @state[col][row] == @state[col][row + counter + 1]
+            break unless !@state[col][row + counter].nil? && @state[col][row + counter] == @state[col][row + counter + 1] # rubocop:disable Style/IfUnlessModifier
 
             return true if counter == 2 # checks finished on ++ 0,1,2
           end
@@ -50,8 +67,40 @@ module ConnectFourGame
       false
     end
 
-    def check_fwd_diags; end
+    # TODO: refactor in a way that pleases rubocop
+    def check_fwd_diags # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      [*0...@state.size].each do |col|
+        [*0..SIZE_ROWS].each do |row|
+          3.times do |counter|
+            begin
+              break unless !@state[col + counter][row + counter].nil? &&
+                           @state[col + counter][row + counter] == @state[col + counter + 1][row + counter + 1]
+            rescue NoMethodError
+              break
+            end
+            return true if counter == 2
+          end
+        end
+      end
+      false
+    end
 
-    def check_bck_diags; end
+    # TODO: refactor in a way that pleases rubocop
+    def check_bck_diags # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      [*0...@state.size].each do |col|
+        [*0..SIZE_ROWS].each do |row|
+          3.times do |counter|
+            begin
+              break unless !@state[col + counter][row - counter].nil? &&
+                           @state[col + counter][row - counter] == @state[col + counter + 1][row - counter - 1]
+            rescue NoMethodError
+              break
+            end
+            return true if counter == 2
+          end
+        end
+      end
+      false
+    end
   end
 end
