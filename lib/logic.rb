@@ -18,7 +18,10 @@ module ConnectFourGame
       @state[col] && @state[col].size < SIZE_ROWS
     end
 
-    def game_over?; end
+    def game_over?
+      check_cols || check_rows ||
+        check_fwd_diags || check_bck_diags
+    end
 
     def winner
       return unless game_over?
