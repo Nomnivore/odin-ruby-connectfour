@@ -249,7 +249,7 @@ describe ConnectFourGame::Board do
         [p1, p1, p2, p2, p1],
         []
       ]
-      subject(:fwd_match) { described_class.new(state)}
+      subject(:fwd_match) { described_class.new(state) }
       it 'returns true' do
         expect(fwd_match.check_fwd_diags).to be true
       end

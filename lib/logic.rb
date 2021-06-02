@@ -61,7 +61,8 @@ module ConnectFourGame
       [*0...@state.size].each do |col|
         [*0..SIZE_ROWS].each do |row|
           3.times do |counter|
-            break unless !@state[col][row + counter].nil? && @state[col][row + counter] == @state[col][row + counter + 1] # rubocop:disable Style/IfUnlessModifier
+            break unless !@state[col][row + counter].nil? &&
+                         @state[col][row + counter] == @state[col][row + counter + 1]
 
             return true if counter == 2 # checks finished on ++ 0,1,2
           end
