@@ -31,8 +31,8 @@ module ConnectFourGame
       return unless valid_move?(col)
 
       piece = case token
-              when :p1 then TOKEN_1
-              when :p2 then TOKEN_2
+              when 1 then TOKEN_1
+              when 2 then TOKEN_2
               end
 
       @state[col].append(piece)

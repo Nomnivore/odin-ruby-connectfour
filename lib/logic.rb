@@ -29,12 +29,12 @@ module ConnectFourGame
       p1_count = @state.flatten.count(TOKEN_1)
       p2_count = @state.flatten.count(TOKEN_2)
 
-      return :tie if p1_count.eql?(p2_count)
+      return 0 if p1_count.eql?(p2_count)
 
       if p1_count > p2_count
-        :p1
+        1
       else
-        :p2
+        2
       end
     end
 

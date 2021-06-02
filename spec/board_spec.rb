@@ -53,7 +53,7 @@ describe ConnectFourGame::Board do
     context 'when the move is not valid' do
       it 'does not add a piece to the column' do
         allow(game_drop).to receive(:valid_move?).and_return false
-        expect { game_drop.drop_piece(0, :p1) }.not_to(change { game_drop.state[0].size })
+        expect { game_drop.drop_piece(0, 1) }.not_to(change { game_drop.state[0].size })
       end
     end
 
@@ -62,13 +62,13 @@ describe ConnectFourGame::Board do
       let(:token_p2) { described_class::TOKEN_2 }
       it 'adds the player 1 token to the column' do
         allow(game_drop).to receive(:valid_move?).and_return true
-        game_drop.drop_piece(6, :p1)
+        game_drop.drop_piece(6, 1)
         expect(game_drop.state[6]).to include(token_p1)
       end
 
       it 'adds the player 2 token to the column' do
         allow(game_drop).to receive(:valid_move?).and_return true
-        game_drop.drop_piece(3, :p2)
+        game_drop.drop_piece(3, 2)
         expect(game_drop.state[3]).to include(token_p2)
       end
     end
@@ -100,7 +100,7 @@ describe ConnectFourGame::Board do
 
       it 'returns the p1 symbol' do
         allow(game_p1).to receive(:game_over?).and_return true
-        expect(game_p1.winner).to be(:p1)
+        expect(game_p1.winner).to be(1)
       end
     end
 
@@ -119,7 +119,7 @@ describe ConnectFourGame::Board do
 
       it 'returns the p2 symbol' do
         allow(game_p2).to receive(:game_over?).and_return true
-        expect(game_p2.winner).to be(:p2)
+        expect(game_p2.winner).to be(2)
       end
     end
   end
