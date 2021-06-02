@@ -72,5 +72,44 @@ describe ConnectFourGame::Board do
       end
     end
   end
+
+  describe '#check_cols' do
+    let(:p1) { described_class::TOKEN_1 }
+    let(:p2) { described_class::TOKEN_2 }
+
+    context 'with 4 matching tokens in a row' do
+      state = [
+        [],
+        %i[p2],
+        [],
+        %i[p2 p1 p1 p1 p1 p2],
+        []
+      ]
+      subject(:col_match) { described_class.new(state) }
+      it 'is true' do
+        expect(col_match.check_cols).to be true
+      end
+    end
+
+    context 'when not 4 in a row' do
+      state = [
+        [],
+        %i[p1 p2 p1 p2],
+        %i[p1 p1 p1 p2 p2 p2],
+        []
+      ]
+      subject(:col_no_match) { described_class.new(state) }
+      it 'is false' do
+        expect(col_no_match.check_cols).to be false
+      end
+    end
+
+    context 'when empty' do
+      subject(:col_empty) { described_class.new }
+      it 'is false' do
+        expect(col_empty.check_cols).to be true
+      end
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength

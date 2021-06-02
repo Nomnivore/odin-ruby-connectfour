@@ -17,5 +17,15 @@ module ConnectFourGame
     def valid_move?(col)
       @state[col] && @state[col].size < SIZE_ROWS
     end
+
+    def game_over?; end
+
+    def winner; end
+
+    def check_rows; end
+
+    def check_cols; end
+
+    def check_diags; end
   end
 end
