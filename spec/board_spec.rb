@@ -73,16 +73,66 @@ describe ConnectFourGame::Board do
     end
   end
 
+  describe '#winner' do
+    p1 = described_class::TOKEN_1
+    p2 = described_class::TOKEN_2
+
+    context 'when not game_over?' do
+      it 'returns nil' do
+        allow(subject).to receive(:game_over?).and_return false
+        expect(subject.winner).to be nil
+      end
+    end
+
+    context 'when player 1 has won' do
+      # even tho #game_over? will be stubbed, we should set up
+      # a winner-like situation for the method.
+      state = [
+        [],
+        [p2, p2, p2],
+        [],
+        [],
+        [p1, p1, p1, p1],
+        []
+      ]
+      subject(:game_p1) { described_class.new(state) }
+
+      it 'returns the p1 symbol' do
+        allow(game_p1).to receive(:game_over?).and_return true
+        expect(game_p1.winner).to be(:p1)
+      end
+    end
+
+    context 'when player 2 has won' do
+      # even tho #game_over? will be stubbed, we should set up
+      # a winner-like situation for the method.
+      state = [
+        [p2, p1],
+        [p2],
+        [p2],
+        [p2, p1, p1],
+        [],
+        []
+      ]
+      subject(:game_p2) { described_class.new(state) }
+
+      it 'returns the p2 symbol' do
+        allow(game_p2).to receive(:game_over?).and_return true
+        expect(game_p2.winner).to be(:p2)
+      end
+    end
+  end
+
   describe '#check_cols' do
-    let(:p1) { described_class::TOKEN_1 }
-    let(:p2) { described_class::TOKEN_2 }
+    p1 = described_class::TOKEN_1
+    p2 = described_class::TOKEN_2
 
     context 'with 4 matching tokens in a row' do
       state = [
         [],
-        %i[p2],
+        [p2],
         [],
-        %i[p2 p1 p1 p1 p1 p2],
+        [p2, p1, p1, p1, p1, p2],
         []
       ]
       subject(:col_match) { described_class.new(state) }
@@ -94,8 +144,8 @@ describe ConnectFourGame::Board do
     context 'when not 4 in a row' do
       state = [
         [],
-        %i[p1 p2 p1 p2],
-        %i[p1 p1 p1 p2 p2 p2],
+        [p1, p2, p1, p2],
+        [p1, p1, p1, p2, p2, p2],
         []
       ]
       subject(:col_no_match) { described_class.new(state) }
