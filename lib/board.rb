@@ -10,6 +10,8 @@ module ConnectFourGame
     attr_reader :state
 
     def initialize(state = Array.new(SIZE_COLS) { [] })
+      raise(OddSizeError) if (SIZE_COLS * SIZE_ROWS).even?
+
       @state = state
     end
 
@@ -34,6 +36,13 @@ module ConnectFourGame
               end
 
       @state[col].append(piece)
+    end
+  end
+
+  # custom error when board size constants are set incorrectly
+  class OddSizeError < StandardError
+    def message
+      'Board size constants must result in an even number when multiplied'
     end
   end
 end
