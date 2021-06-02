@@ -185,8 +185,8 @@ describe ConnectFourGame::Board do
     context 'when not 4 in a row' do
       state = [
         [p2, p1],
-        [p1, p2],
-        [p2, p1],
+        [p1, p1],
+        [p2, p2],
         [p1, p2],
         [p1, p2]
       ]
@@ -228,9 +228,9 @@ describe ConnectFourGame::Board do
       state = [
         [p2, p1, p1, p1, p1],
         [p2],
-        [p2],
-        [p2],
-        [p2]
+        [p2, p1],
+        [p2, p1, p1],
+        [p2, p2, p2, p1]
       ]
       subject(:fwd_no_match) { described_class.new(state) }
       it 'returns false' do
@@ -269,8 +269,8 @@ describe ConnectFourGame::Board do
     context 'when not 4 in a row' do
       state = [
         [p2, p1, p1, p1, p1],
-        [p2],
-        [p2],
+        [p2, p2, p1],
+        [p2, p1],
         [p2],
         [p2]
       ]
