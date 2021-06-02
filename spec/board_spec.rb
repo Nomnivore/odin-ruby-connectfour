@@ -8,16 +8,17 @@ require_relative '../lib/board'
 describe ConnectFourGame::Board do
   describe '#initialize' do
     context 'when initialized without arguments' do
-      subject { described_class.new }
+      subject(:game_new) { described_class.new }
       it 'creates a blank state with the configured size' do
         size = described_class::SIZE_COLS
-        expect(subject.state.size).to eq(size)
+        expect(game_new.state.size).to eq(size)
       end
 
       it 'has all empty columns' do
-        expect(subject.state.all?(&:empty?)).to be true
+        expect(game_new.state.all?(&:empty?)).to be true
       end
     end
+    # ? Can't figure out a way to test for constants defined in Logic
   end
 
   describe '#valid_move?' do
