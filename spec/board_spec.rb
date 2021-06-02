@@ -161,5 +161,47 @@ describe ConnectFourGame::Board do
       end
     end
   end
+
+  describe '#check_rows' do
+    p1 = described_class::TOKEN_1
+    p2 = described_class::TOKEN_2
+
+    context 'with 4 in a row' do
+      state = [
+        [p2, p2],
+        [],
+        [p2],
+        [p2, p1],
+        [p2, p1],
+        [p1, p1],
+        [p1, p1]
+      ]
+      subject(:row_match) { described_class.new(state) }
+      it 'is true' do
+        expect(row_match.check_rows).to be true
+      end
+    end
+
+    context 'when not 4 in a row' do
+      state = [
+        [p2, p1],
+        [p1, p2],
+        [p2, p1],
+        [p1, p2],
+        [p1, p2]
+      ]
+      subject(:row_no_match) { described_class.new(state) }
+      it 'is false' do
+        expect(row_no_match.check_rows).to be false
+      end
+    end
+
+    context 'when empty' do
+      subject(:row_empty) { described_class.new }
+      it 'is false' do
+        expect(row_empty.check_rows).to be false
+      end
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength
