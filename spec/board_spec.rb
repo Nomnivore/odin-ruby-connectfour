@@ -203,5 +203,89 @@ describe ConnectFourGame::Board do
       end
     end
   end
+
+  describe '#check_fwd_diags' do
+    p1 = described_class::TOKEN_1
+    p2 = described_class::TOKEN_2
+
+    context 'with 4 in a row' do
+      state = [
+        [p2],
+        [p2, p1],
+        [p1, p1],
+        [p1, p2, p1],
+        [p2, p1, p2, p1],
+        [p1, p1, p2, p2, p1],
+        []
+      ]
+      subject(:fwd_match) { described_class.new(state)}
+      it 'returns true' do
+        expect(fwd_match.check_fwd_diags).to be true
+      end
+    end
+
+    context 'when not 4 in a row' do
+      state = [
+        [p2, p1, p1, p1, p1],
+        [p2],
+        [p2],
+        [p2],
+        [p2]
+      ]
+      subject(:fwd_no_match) { described_class.new(state) }
+      it 'returns false' do
+        expect(fwd_no_match.check_fwd_diags).to be false
+      end
+    end
+
+    context 'when empty' do
+      subject(:fwd_empty) { described_class.new }
+      it 'returns false' do
+        expect(fwd_empty.check_fwd_diags).to be false
+      end
+    end
+  end
+
+  describe '#check_bck_diags' do
+    p1 = described_class::TOKEN_1
+    p2 = described_class::TOKEN_2
+
+    context 'with 4 in a row' do
+      state = [
+        [p2, p1, p2, p1, p1],
+        [p2, p2, p1, p1],
+        [p1, p2, p1],
+        [p2, p1],
+        [],
+        [p2],
+        []
+      ]
+      subject(:bck_match) { described_class.new(state) }
+      it 'returns true' do
+        expect(bck_match.check_bck_diags).to be true
+      end
+    end
+
+    context 'when not 4 in a row' do
+      state = [
+        [p2, p1, p1, p1, p1],
+        [p2],
+        [p2],
+        [p2],
+        [p2]
+      ]
+      subject(:bck_no_match) { described_class.new(state) }
+      it 'returns false' do
+        expect(bck_no_match.check_bck_diags).to be false
+      end
+    end
+
+    context 'when empty' do
+      subject(:bck_empty) { described_class.new }
+      it 'returns false' do
+        expect(bck_empty.check_bck_diags).to be false
+      end
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength

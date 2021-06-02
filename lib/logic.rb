@@ -50,6 +50,8 @@ module ConnectFourGame
       false
     end
 
-    def check_diags; end
+    def check_fwd_diags; end
+
+    def check_bck_diags; end
   end
 end
