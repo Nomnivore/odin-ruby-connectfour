@@ -20,7 +20,7 @@ module ConnectFourGame
 
     def game_over?
       check_cols || check_rows ||
-        check_fwd_diags || check_bck_diags
+        check_fwd_diags || check_bck_diags || tie_game?
     end
 
     def winner
@@ -29,7 +29,7 @@ module ConnectFourGame
       p1_count = @state.flatten.count(TOKEN_1)
       p2_count = @state.flatten.count(TOKEN_2)
 
-      return if p1_count.eql?(p2_count) # just in case game_over? returns something unexpected
+      return :tie if p1_count.eql?(p2_count)
 
       if p1_count > p2_count
         :p1
@@ -105,6 +105,10 @@ module ConnectFourGame
         end
       end
       false
+    end
+
+    def tie_game?
+      @state.flatten.size == (SIZE_COLS * SIZE_ROWS)
     end
   end
 end
