@@ -157,7 +157,7 @@ describe ConnectFourGame::Board do
     context 'when empty' do
       subject(:col_empty) { described_class.new }
       it 'is false' do
-        expect(col_empty.check_cols).to be true
+        expect(col_empty.check_cols).to be false
       end
     end
   end
