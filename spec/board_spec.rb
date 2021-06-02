@@ -123,6 +123,37 @@ describe ConnectFourGame::Board do
     end
   end
 
+  describe '#game_over?' do
+    subject(:game_over) { described_class.new }
+    context 'when row win' do
+      it 'is game over' do
+        allow(game_over).to receive(:check_rows).and_return(true)
+        expect(game_over).to be_game_over
+      end
+    end
+
+    context 'when column win' do
+      it 'is game over' do
+        allow(game_over).to receive(:check_cols).and_return(true)
+        expect(game_over).to be_game_over
+      end
+    end
+
+    context 'when fwd_diag win' do
+      it 'is game over' do
+        allow(game_over).to receive(:check_fwd_diags).and_return(true)
+        expect(game_over).to be_game_over
+      end
+    end
+
+    context 'when bck_diag win' do
+      it 'is game over' do
+        allow(game_over).to receive(:check_bck_diags).and_return(true)
+        expect(game_over).to be_game_over
+      end
+    end
+  end
+
   describe '#check_cols' do
     p1 = described_class::TOKEN_1
     p2 = described_class::TOKEN_2
