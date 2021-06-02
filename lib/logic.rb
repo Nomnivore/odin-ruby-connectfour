@@ -20,7 +20,20 @@ module ConnectFourGame
 
     def game_over?; end
 
-    def winner; end
+    def winner
+      return unless game_over?
+
+      p1_count = @state.flatten.count(TOKEN_1)
+      p2_count = @state.flatten.count(TOKEN_2)
+
+      return if p1_count.eql?(p2_count) # just in case game_over? returns something unexpected
+
+      if p1_count > p2_count
+        :p1
+      else
+        :p2
+      end
+    end
 
     def check_rows; end
 
