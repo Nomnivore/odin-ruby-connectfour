@@ -10,7 +10,7 @@ module ConnectFourGame
     attr_reader :state
 
     def initialize(state = Array.new(SIZE_COLS) { [] })
-      raise(OddSizeError) if (SIZE_COLS * SIZE_ROWS).even?
+      raise(OddSizeError) unless (SIZE_COLS * SIZE_ROWS).even?
 
       @state = state
     end
