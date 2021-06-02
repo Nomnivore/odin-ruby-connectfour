@@ -43,7 +43,7 @@ module ConnectFourGame
           3.times do |counter|
             break unless !@state[col][row + counter].nil? && @state[col][row] == @state[col][row + counter + 1]
 
-            return true if counter == 3 # checks finished
+            return true if counter == 2 # checks finished on ++ 0,1,2
           end
         end
       end
