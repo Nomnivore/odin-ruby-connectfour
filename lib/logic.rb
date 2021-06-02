@@ -38,6 +38,16 @@ module ConnectFourGame
       end
     end
 
+    def current_player
+      p1_count = @state.flatten.count(TOKEN_1)
+      p2_count = @state.flatten.count(TOKEN_2)
+
+      case p1_count - p2_count
+      when 1 then 2 # 2's turn
+      when 0 then 1 # 1's turn
+      end
+    end
+
     # TODO: refactor in a way that pleases rubocop
     def check_rows # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
       [*0..SIZE_ROWS].each do |row|

@@ -98,7 +98,7 @@ describe ConnectFourGame::Board do
       ]
       subject(:game_p1) { described_class.new(state) }
 
-      it 'returns the p1 symbol' do
+      it 'returns 1' do
         allow(game_p1).to receive(:game_over?).and_return true
         expect(game_p1.winner).to be(1)
       end
@@ -117,9 +117,30 @@ describe ConnectFourGame::Board do
       ]
       subject(:game_p2) { described_class.new(state) }
 
-      it 'returns the p2 symbol' do
+      it 'returns 2' do
         allow(game_p2).to receive(:game_over?).and_return true
         expect(game_p2.winner).to be(2)
+      end
+    end
+  end
+
+  describe '#current_player' do
+    context 'when the game has just started' do
+      subject(:game_new) { described_class.new }
+      it 'returns 1' do
+        expect(game_new.current_player).to eq(1)
+      end
+    end
+
+    context 'when player one has one extra move' do
+      state = [
+        [],
+        [described_class::TOKEN_1],
+        []
+      ]
+      subject(:game_turn) { described_class.new(state) }
+      it 'returns 2' do
+        expect(game_turn.current_player).to eq(2)
       end
     end
   end
