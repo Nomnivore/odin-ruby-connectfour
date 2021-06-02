@@ -107,11 +107,11 @@ describe ConnectFourGame::Board do
       # even tho #game_over? will be stubbed, we should set up
       # a winner-like situation for the method.
       state = [
+        [p1, p1],
+        [p2],
+        [p2],
         [p2, p1],
         [p2],
-        [p2],
-        [p2, p1, p1],
-        [],
         []
       ]
       subject(:game_p2) { described_class.new(state) }
