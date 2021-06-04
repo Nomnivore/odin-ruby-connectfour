@@ -18,7 +18,7 @@ module ConnectFourGame
     end
 
     def display_rules
-      print <<~'RUL'
+      print <<~RUL
         Two players will take turns dropping a token into one of #{Logic::SIZE_ROWS} columns.
         If a player gets 4 of their tokens to appear consecutively and either
         horizontally, vertically, or diagonally, they win.
