@@ -28,7 +28,7 @@ module ConnectFourGame
       RUL
       print rules
       horiz_line
-      puts 'Are you ready to play?'
+      puts 'Press enter to continue'
     end
 
     def display_winner
