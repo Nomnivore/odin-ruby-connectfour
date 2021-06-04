@@ -113,13 +113,13 @@ describe ConnectFourGame::Board do
         [p2],
         [p2, p1],
         [p2],
-        []
+        [p1]
       ]
       subject(:game_p2) { described_class.new(state) }
 
       it 'returns 2' do
         allow(game_p2).to receive(:game_over?).and_return true
-        expect(game_p2.winner).to be(2)
+        expect(game_p2.winner).to eq(2)
       end
     end
   end
