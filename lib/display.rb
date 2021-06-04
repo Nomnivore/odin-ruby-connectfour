@@ -31,6 +31,12 @@ module ConnectFourGame
       puts 'Are you ready to play?'
     end
 
+    def display_winner
+      winner = @board.winner
+      msg = winner.positive? ? "Player #{winner} wins!" : "It's a tie!"
+      puts "Game over. #{msg}"
+    end
+
     def horiz_line
       puts '============================================================='
         .blue.bold
