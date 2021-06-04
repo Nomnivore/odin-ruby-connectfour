@@ -24,18 +24,18 @@ module ConnectFourGame
         end
         print "\n"
       end
-      puts "   #{[*1..SIZE_COLS].join('   ')}".green
+      puts "   #{[*1..SIZE_COLS].join('   ')}\n".green
     end
 
     def drop_piece(col, token)
-      return unless valid_move?(col)
+      return unless valid_move?(col - 1)
 
       piece = case token
               when 1 then TOKEN_1
               when 2 then TOKEN_2
               end
 
-      @state[col].append(piece)
+      @state[col - 1].append(piece)
     end
   end
 
