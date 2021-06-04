@@ -99,12 +99,12 @@ module ConnectFourGame
 
     # TODO: refactor in a way that pleases rubocop
     def check_bck_diags # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
-      [*0...@state.size].each do |col|
+      [*0...@state.size].reverse.each do |col|
         [*0..SIZE_ROWS].each do |row|
           3.times do |counter|
             begin
-              break unless !@state[col + counter][row - counter].nil? &&
-                           @state[col + counter][row - counter] == @state[col + counter + 1][row - counter - 1]
+              break unless !@state[col - counter][row + counter].nil? &&
+                           @state[col - counter][row + counter] == @state[col - counter - 1][row + counter + 1]
             rescue NoMethodError
               break
             end

@@ -187,6 +187,29 @@ describe ConnectFourGame::Board do
         expect(game_over).not_to be_game_over
       end
     end
+
+    context 'bug found when testing' do
+      p1 = described_class::TOKEN_1
+      p2 = described_class::TOKEN_2
+      state = [
+        [p1, p2],
+        [p2, p1],
+        [p1, p2],
+        [p2, p1],
+        [p1],
+        [p2],
+        [p1]
+      ]
+      subject(:game_bug) { described_class.new(state) }
+      it 'should not be game over' do
+        allow(game_bug).to receive(:tie_game?).and_return(false)
+        allow(game_bug).to receive(:check_cols).and_return(false)
+        allow(game_bug).to receive(:check_rows).and_return(false)
+        allow(game_bug).to receive(:check_fwd_diags).and_return(false)
+        allow(game_bug).to receive(:check_bck_diags).and_return(false)
+        expect(game_bug).not_to be_game_over
+      end
+    end
   end
 
   describe '#tie_game?' do
@@ -322,6 +345,22 @@ describe ConnectFourGame::Board do
       end
     end
 
+    context 'when not 4 in a row, alternating pieces' do
+      state = [
+        [p2, p1],
+        [p1, p2],
+        [p2, p1],
+        [p1, p2],
+        [p2],
+        [p1],
+        []
+      ]
+      subject(:fwd_no_match) { described_class.new(state) }
+      it 'returns false' do
+        expect(fwd_no_match.check_fwd_diags).to be false
+      end
+    end
+
     context 'when empty' do
       subject(:fwd_empty) { described_class.new }
       it 'returns false' do
@@ -357,6 +396,22 @@ describe ConnectFourGame::Board do
         [p2, p1],
         [p2],
         [p2]
+      ]
+      subject(:bck_no_match) { described_class.new(state) }
+      it 'returns false' do
+        expect(bck_no_match.check_bck_diags).to be false
+      end
+    end
+
+    context 'when not 4 in a row, alternating pieces' do
+      state = [
+        [p1, p2],
+        [p2, p1],
+        [p1, p2],
+        [p2, p1],
+        [],
+        [],
+        []
       ]
       subject(:bck_no_match) { described_class.new(state) }
       it 'returns false' do
